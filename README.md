@@ -3,7 +3,7 @@
 This is a **step-by-step walkthrough** of a complete analysis pipeline for 10x **Visium HD** binned data in Python.  
 The guide mirrors the full analysis script, but breaks it into logical blocks with beginner-friendly explanations so you can understand **what’s happening at each step** and re-run it confidently.
 
-> **What you’ll get**
+> **What we will be doing**
 >
 > * Quality control (QC): metrics, filtering, normalization, and highly variable gene (HVG) selection  
 > * Dimensionality reduction (PCA/UMAP) and clustering (Leiden)  
@@ -362,5 +362,5 @@ print("Saved:", OUT)
 * **Scanpy**: Wolf et al., *Genome Biology*, 2018
 * **Squidpy**: Palla et al., *Nature Methods*, 2022
 * **10x Genomics Visium HD**: [official documentation](https://www.10xgenomics.com/)
-* **Example Data can be downloaded from**: [Visium_HD_3'_mouse_brain_data](https://www.10xgenomics.com/datasets/visium-hd-three-prime-mouse-brain-fresh-frozen)
+* **Example Data can be downloaded from**: [Visium HD 3' mouse brain data](https://www.10xgenomics.com/datasets/visium-hd-three-prime-mouse-brain-fresh-frozen)
 
