@@ -410,6 +410,82 @@ sq.pl.spatial_scatter(
 
 ---
 
+Perfect 👍 Let’s make it into one of your “tutorial-style” blocks. I’ll keep it clean and beginner-friendly, with intro, code, and plain explanations.
+
+---
+
+### 🔹 Visualizing Gene Expression and Cluster Annotations Side-by-Side
+
+In this step, we want to compare how **Leiden-based clusters** (unsupervised clustering) look against **manually annotated clusters** (based on tissue-specific marker genes).
+We’ll overlay both clusters on the tissue image alongside expression of marker genes (*Olfm1* and *Plp1*).
+
+This helps us **validate whether the automatic clusters correspond to known biology**.
+
+---
+
+```python
+# --- Ensure required cluster columns exist ---
+# 'cluster' column should contain Leiden clustering results
+if "cluster" not in adata.obs and "leiden_bin" in adata.obs:
+    adata.obs["cluster"] = adata.obs["leiden_bin"].astype("category")
+
+cluster_key = "cluster"                  # Leiden clusters
+annot_col   = f"{cluster_key}_annot"     # Annotated clusters from marker genes
+
+assert cluster_key in adata.obs.columns,  "❌ Missing Leiden cluster column."
+assert annot_col   in adata.obs.columns,  f"❌ Missing annotated cluster column."
+
+# --- Row 1: Show gene expression & Leiden clusters ---
+sq.pl.spatial_scatter(
+    adata,
+    color=["Olfm1", "Plp1", cluster_key],  # two genes + Leiden clusters
+    library_id=lib_id,
+    size=1.2,
+    ncols=3,
+    title=["Olfm1", "Plp1", "Leiden clusters"]
+)
+
+# --- Row 2: Show gene expression & Annotated clusters ---
+sq.pl.spatial_scatter(
+    adata,
+    color=["Olfm1", "Plp1", annot_col],    # two genes + Annotated clusters
+    library_id=lib_id,
+    size=1.2,
+    ncols=3,
+    title=["Olfm1", "Plp1", "Annotated clusters"]
+)
+
+# --- Optional: Direct side-by-side comparison of clusters only ---
+sq.pl.spatial_scatter(
+    adata,
+    color=[cluster_key, annot_col],
+    library_id=lib_id,
+    size=1.2,
+    ncols=2,
+    title=["Leiden clusters", "Annotated clusters"]
+)
+```
+
+📝 ***Notes:***
+
+1. **Cluster Types**
+
+   * *Leiden clusters* = generated automatically from gene expression patterns.
+   * *Annotated clusters* = manually labeled based on marker genes (e.g., hippocampus, cortex, etc.).
+
+2. **Why show both?**
+
+   * If *Olfm1* or *Plp1* expression lines up with an annotated cluster, it validates the biology.
+   * If the Leiden clustering disagrees, you may need to adjust clustering resolution or re-check marker assignments.
+
+3. **Visualization layout**
+
+   * First row = Leiden clusters next to *Olfm1*/*Plp1*.
+   * Second row = Annotated clusters next to *Olfm1*/*Plp1*.
+   * Last plot = Leiden vs Annotated clusters directly side by side.
+
+---
+
 ### 🧾 Methods blurb (for reports/papers)
 
 ```python
