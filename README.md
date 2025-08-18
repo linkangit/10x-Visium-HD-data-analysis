@@ -13,7 +13,7 @@ This guide walks you through an **analysis pipeline** for 10x Visium HD (8 µm b
 - ✅ Export results and generate a **Methods text snippet**  
 
 
-> **Tip for beginners**: Each section starts with an explanation of *why* we’re doing it, then gives runnable Python code.
+> **Tip for beginners**: Each section starts with an explanation of *why* we’re doing it, then gives runnable Python code. Every block of raw code is followed by notes in plain language so you can understand why each step is needed.
 
 ---
 
@@ -66,7 +66,7 @@ MATRIX_H5 = os.path.join(BIN_DIR, "filtered_feature_bc_matrix.h5")
 lib_id = f"square_{BIN}um"
 ```
 
-📝 **Beginner explanation:**
+📝 **Notes:**
 
 * Install libraries only once (remove `#` to run the pip command).
 * `RUN_DIR` is the folder where your Visium HD data lives.
@@ -85,7 +85,7 @@ adata.var_names_make_unique()
 print(adata)
 ```
 
-📝 **Beginner explanation:**
+📝 **Notes:**
 
 * `sc.read_10x_h5` reads your gene-by-spot count matrix.
 * `var_names_make_unique()` avoids errors if two genes share the same name.
@@ -141,7 +141,7 @@ if coords.notna().all().all():
     adata.obs[["array_row","array_col"]] = coords[["array_row","array_col"]].astype(float).values
 ```
 
-📝 **Beginner explanation:**
+📝 **Notes:**
 
 * Loads the `tissue_positions.parquet` file = pixel coordinates of each barcode.
 * Aligns those coordinates with the barcodes in `adata`.
@@ -170,7 +170,7 @@ if qc_keys:
     sc.pl.violin(adata, qc_keys, jitter=0.3, multi_panel=True)
 ```
 
-📝 **Beginner explanation:**
+📝 **Notes:**
 
 * Tags mitochondrial (`mt-`) and ribosomal (`Rps`, `Rpl`) genes.
 * Calculates per-spot QC metrics like:
@@ -218,7 +218,7 @@ else:
     print("⚠️ Skipping violin plot: no spots or missing QC keys.")
 ```
 
-📝 **Beginner explanation:**
+📝 **Notes:**
 
 * Uses **2nd and 99th percentiles** of total counts to avoid extreme low/high spots.
 * Caps mitochondrial reads at 25% and ribosomal at 30%.
@@ -250,7 +250,7 @@ sc.pl.umap(adata, color=["cluster","total_counts","pct_counts_mt"], wspace=0.4)
 sc.pl.spatial(adata, color="cluster", library_id=lib_id, spot_size=1.2)
 ```
 
-📝 **Beginner explanation:**
+📝 **Notes:**
 
 * Normalization scales each spot to the same total counts.
 * Log transform stabilizes variance.
@@ -285,7 +285,7 @@ if seed_cluster is not None:
     sq.pl.co_occurrence(adata, cluster_key="cluster", clusters=seed_cluster, figsize=(8,4))
 ```
 
-📝 **Beginner explanation:**
+📝 **Notes:**
 
 * Creates a neighbor graph based on spatial grid or generic nearest neighbors.
 * Tests **which clusters are enriched next to each other** (nhood enrichment).
@@ -300,15 +300,15 @@ We can overlay specific genes and clusters directly on the tissue.
 ```python
 sq.pl.spatial_scatter(
     adata,
-    color=["Olfm1", "Plp1", "Itpka", "cluster"],
+    color=["Olfm1","Plp1", f"{cluster_key}_annot"],
     library_id=lib_id,
     size=1.2
 )
 ```
 
-📝 **Beginner explanation:**
+📝 **Notes:**
 
-* Plots expression of genes (`Olfm1`, `Plp1`, `Itpka`) and the cluster labels.
+* Plots expression of example genes (`Olfm1`, `Plp1`) and the cluster labels overlayed on top of the tissue.
 * Lets you visually check if gene expression matches known tissue layers.
 
 ---
@@ -338,7 +338,7 @@ sc.pl.heatmap(adata, var_names=ordered_genes, groupby="cluster",
               swap_axes=True, vmin=-2, vmax=2, cmap="viridis", show_gene_labels=True)
 ```
 
-📝 **Beginner explanation:**
+📝 **Notes:**
 
 * Uses `rank_genes_groups` to identify markers for each cluster.
 * Generates bar plots, heatmaps, and dotplots for quick inspection.
@@ -401,7 +401,7 @@ sq.pl.spatial_scatter(
 )
 ```
 
-📝 **Beginner explanation:**
+📝 **Notes:**
 
 * Each **marker set** is a gene panel known to define a cell type.
 * We compute a “score” per spot = how much that spot expresses the panel.
@@ -442,7 +442,7 @@ adata.write(OUT, compression="gzip")
 print("Saved:", OUT)
 ````
 
-📝 **Beginner explanation:**
+📝 **Notes:**
 
 * Saves your final AnnData object (`.h5ad`) with all QC, clustering, and annotations.
 * Use this file to reload results later without rerunning the pipeline.
