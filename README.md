@@ -515,6 +515,8 @@ print("Saved:", OUT)
 * Saves your final AnnData object (`.h5ad`) with all QC, clustering, and annotations.
 * Use this file to reload results later without rerunning the pipeline.
 
+---
+
 ### 📚 Important Citations
 
 * [Scanpy spatial tutorial](https://scanpy-tutorials.readthedocs.io/en/latest/spatial/basic-analysis.html)
