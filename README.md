@@ -410,10 +410,6 @@ sq.pl.spatial_scatter(
 
 ---
 
-Perfect 👍 Let’s make it into one of your “tutorial-style” blocks. I’ll keep it clean and beginner-friendly, with intro, code, and plain explanations.
-
----
-
 ### 🔹 Visualizing Gene Expression and Cluster Annotations Side-by-Side
 
 In this step, we want to compare how **Leiden-based clusters** (unsupervised clustering) look against **manually annotated clusters** (based on tissue-specific marker genes).
