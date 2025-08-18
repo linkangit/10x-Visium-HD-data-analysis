@@ -362,4 +362,5 @@ print("Saved:", OUT)
 * **Scanpy**: Wolf et al., *Genome Biology*, 2018
 * **Squidpy**: Palla et al., *Nature Methods*, 2022
 * **10x Genomics Visium HD**: [official documentation](https://www.10xgenomics.com/)
+* **Example Data can be downloaded from**: [Visium_HD_3'_mouse_brain_data](https://www.10xgenomics.com/datasets/visium-hd-three-prime-mouse-brain-fresh-frozen)
 
