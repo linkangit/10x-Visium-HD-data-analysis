@@ -176,7 +176,7 @@ if qc_keys:
 * Calculates per-spot QC metrics like:
 
   * total counts
-  * # genes detected
+  * genes detected
   * % mitochondrial
   * % ribosomal
 * Violin plots help spot outliers (spots with too few counts, or too high % mito).
