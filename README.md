@@ -248,7 +248,7 @@ print("Saved:", OUT)
 
 ---
 
-## 📑 Methods (Auto-generated)
+## 📑 Methods
 
 Copy-paste this into your manuscript/report:
 
