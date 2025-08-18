@@ -1,7 +1,6 @@
 # 🧬 10x Visium HD (8 µm) — End-to-End Analysis in Python
 
-Welcome! 👋  
-This guide walks you through an **analysis pipeline** for 10x Visium HD (8 µm bin) data using Python, [Scanpy](https://scanpy.readthedocs.io/), and [Squidpy](https://squidpy.readthedocs.io/).  
+Welcome! This guide walks you through an **analysis pipeline** for 10x Visium HD (8 µm bin) data using Python, [Scanpy](https://scanpy.readthedocs.io/), and [Squidpy](https://squidpy.readthedocs.io/).  
 
 - ✅ Import Visium HD data directly from 10x outputs  
 - ✅ Perform QC, filtering, normalization, HVG selection  
