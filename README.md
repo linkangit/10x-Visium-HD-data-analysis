@@ -190,8 +190,8 @@ We filter out low-quality spots and genes using thresholds based on your dataset
 ```python
 # dataset-adaptive thresholds from percentiles
 low, high = adata.obs['total_counts'].quantile([0.02, 0.99])
-min_counts = max(1000, int(low))
-max_counts = max(int(high), 15000)
+min_counts = max(100, int(low))
+max_counts = max(int(high), 30000)
 print(f"Using min_counts={min_counts}, max_counts={max_counts}")
 
 sc.pp.filter_cells(adata, min_counts=min_counts)
