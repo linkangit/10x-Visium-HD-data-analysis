@@ -300,7 +300,7 @@ We can overlay specific genes and clusters directly on the tissue.
 ```python
 sq.pl.spatial_scatter(
     adata,
-    color=["Olfm1","Plp1", f"{cluster_key}_annot"],
+    color=["Olfm1","Plp1", "cluster"],
     library_id=lib_id,
     size=1.2
 )
