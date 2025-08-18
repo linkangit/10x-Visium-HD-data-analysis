@@ -412,11 +412,8 @@ sq.pl.spatial_scatter(
 ### 🔹 Visualizing Gene Expression and Cluster Annotations Side-by-Side
 
 In this step, we want to compare how **Leiden-based clusters** (unsupervised clustering) look against **manually annotated clusters** (based on tissue-specific marker genes).
-We’ll overlay both clusters on the tissue image alongside expression of marker genes (*Olfm1* and *Plp1*).
+We’ll overlay both clusters on the tissue image alongside expression of marker genes (*Olfm1* and *Plp1*). This helps us validate whether the automatic clusters correspond to known biology.
 
-This helps us **validate whether the automatic clusters correspond to known biology**.
-
----
 
 ```python
 # --- Ensure required cluster columns exist ---
