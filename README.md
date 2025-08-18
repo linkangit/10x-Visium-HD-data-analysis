@@ -363,6 +363,3 @@ print("Saved:", OUT)
 * **Squidpy**: Palla et al., *Nature Methods*, 2022
 * **10x Genomics Visium HD**: [official documentation](https://www.10xgenomics.com/)
 
-```
-
----
