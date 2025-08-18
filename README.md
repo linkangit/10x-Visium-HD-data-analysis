@@ -21,13 +21,13 @@ After running the 10x Genomics pipeline for Visium HD, your data folder should l
 
 Visium\_HD\_data/
 ├── binned\_outputs/
-│   └── square\_008um/
-│       ├── filtered\_feature\_bc\_matrix.h5
-│       └── spatial/
-│           ├── tissue\_positions.parquet
-│           ├── scalefactors\_json.json
-│           ├── tissue\_hires\_image.png
-│           └── tissue\_lowres\_image.png
+   └── square\_008um/
+       ├── filtered\_feature\_bc\_matrix.h5
+       └── spatial/
+           ├── tissue\_positions.parquet
+           ├── scalefactors\_json.json
+           ├── tissue\_hires\_image.png
+           └── tissue\_lowres\_image.png
 
 ````
 
