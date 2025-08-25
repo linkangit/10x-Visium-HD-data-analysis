@@ -14,7 +14,7 @@ Welcome! This guide walks you through an **analysis pipeline** for 10x Visium HD
 
 > **Tip for beginners**: Each section starts with an explanation of *why* we’re doing it, then gives runnable Python code. Every block of raw code is followed by notes in plain language so you can understand why each step is needed.
 
----
+
 
 ### 📂 Data Structure
 
@@ -72,7 +72,7 @@ lib_id = f"square_{BIN}um"
 * The `"008"` means you’re analyzing **8 µm binned data**.
 * The rest just builds the correct paths automatically so we don’t have to type them each time.
 
----
+
 
 ### 📥 Load the count matrix
 
@@ -90,7 +90,7 @@ print(adata)
 * `var_names_make_unique()` avoids errors if two genes share the same name.
 * Printing shows you how many spots and genes are loaded.
 
----
+
 
 ### 🖼️ Add spatial coordinates and images
 
@@ -147,7 +147,7 @@ if coords.notna().all().all():
 * Loads high-res and low-res histology images so clusters can be plotted directly on tissue.
 * Optional: extracts **grid coordinates** if your barcodes encode them.
 
----
+
 
 ### 🧪 QC metrics (mitochondrial + ribosomal)
 
@@ -180,7 +180,7 @@ if qc_keys:
   * % ribosomal
 * Violin plots help spot outliers (spots with too few counts, or too high % mito).
 
----
+
 
 ### 🧹 Adaptive filtering
 
@@ -224,7 +224,7 @@ else:
 * Removes genes expressed in <10 spots.
 * Recomputes QC metrics and replots.
 
----
+
 
 ### 🔎 Normalize, log-transform, HVGs, PCA, UMAP, clustering
 
@@ -259,7 +259,7 @@ sc.pl.spatial(adata, color="cluster", library_id=lib_id, spot_size=1.2)
 * Leiden finds clusters (resolution 0.8).
 * Plots show clusters on UMAP and on tissue.
 
----
+
 
 ### 🕸️ Spatial neighbors and enrichment
 
@@ -290,7 +290,7 @@ if seed_cluster is not None:
 * Tests **which clusters are enriched next to each other** (nhood enrichment).
 * Co-occurrence shows how often clusters appear side by side in space.
 
----
+
 
 ### 🎨 Spatial gene and cluster maps
 
@@ -310,7 +310,7 @@ sq.pl.spatial_scatter(
 * Plots expression of example genes (`Olfm1`, `Plp1`) and the cluster labels overlayed on top of the tissue.
 * Lets you visually check if gene expression matches known tissue layers.
 
----
+
 
 ### 🧬 Marker gene discovery
 
@@ -343,7 +343,7 @@ sc.pl.heatmap(adata, var_names=ordered_genes, groupby="cluster",
 * Generates bar plots, heatmaps, and dotplots for quick inspection.
 * Helps decide which biological identity each cluster may represent.
 
----
+
 
 ### 🧬 Cluster annotation with marker panels
 
@@ -407,7 +407,7 @@ sq.pl.spatial_scatter(
 * Scores are averaged per cluster → whichever marker set is highest becomes that cluster’s label.
 * UMAP + spatial plots help validate whether the annotations make sense.
 
----
+
 
 ### 🔹 Visualizing Gene Expression and Cluster Annotations Side-by-Side
 
@@ -416,7 +416,7 @@ We’ll overlay both clusters on the tissue image alongside expression of marker
 
 
 ```python
-# --- Ensure required cluster columns exist ---
+#  Ensure required cluster columns exist 
 # 'cluster' column should contain Leiden clustering results
 if "cluster" not in adata.obs and "leiden_bin" in adata.obs:
     adata.obs["cluster"] = adata.obs["leiden_bin"].astype("category")
@@ -427,7 +427,7 @@ annot_col   = f"{cluster_key}_annot"     # Annotated clusters from marker genes
 assert cluster_key in adata.obs.columns,  "❌ Missing Leiden cluster column."
 assert annot_col   in adata.obs.columns,  f"❌ Missing annotated cluster column."
 
-# --- Row 1: Show gene expression & Leiden clusters ---
+#  Row 1: Show gene expression & Leiden clusters 
 sq.pl.spatial_scatter(
     adata,
     color=["Olfm1", "Plp1", cluster_key],  # two genes + Leiden clusters
@@ -437,7 +437,7 @@ sq.pl.spatial_scatter(
     title=["Olfm1", "Plp1", "Leiden clusters"]
 )
 
-# --- Row 2: Show gene expression & Annotated clusters ---
+#  Row 2: Show gene expression & Annotated clusters 
 sq.pl.spatial_scatter(
     adata,
     color=["Olfm1", "Plp1", annot_col],    # two genes + Annotated clusters
@@ -447,7 +447,7 @@ sq.pl.spatial_scatter(
     title=["Olfm1", "Plp1", "Annotated clusters"]
 )
 
-# --- Optional: Direct side-by-side comparison of clusters only ---
+#  Optional: Direct side-by-side comparison of clusters only 
 sq.pl.spatial_scatter(
     adata,
     color=[cluster_key, annot_col],
@@ -476,7 +476,7 @@ sq.pl.spatial_scatter(
    * Second row = Annotated clusters next to *Olfm1*/*Plp1*.
    * Last plot = Leiden vs Annotated clusters directly side by side.
 
----
+
 
 ### 🧾 Methods blurb (for reports/papers)
 
@@ -515,7 +515,7 @@ print("Saved:", OUT)
 * Saves your final AnnData object (`.h5ad`) with all QC, clustering, and annotations.
 * Use this file to reload results later without rerunning the pipeline.
 
----
+
 
 ### 📚 Important Citations
 
