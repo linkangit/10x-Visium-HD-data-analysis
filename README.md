@@ -8,8 +8,8 @@ Welcome! This guide walks you through an **analysis pipeline** for 10x Visium HD
 - ✅ Spatial neighborhood statistics (Squidpy)  
 - ✅ Plot genes + clusters on tissue  
 - ✅ Rank marker genes, visualize expression panels  
-- ✅ Annotate clusters using **literature-derived marker modules**  
-- ✅ Export results and generate a **Methods text snippet**  
+- ✅ Annotate clusters using literature-derived marker modules  
+- ✅ Export results and generate a Methods text snippet  
 
 
 > **Tip for beginners**: Each section starts with an explanation of *why* we’re doing it, then gives runnable Python code. Every block of raw code is followed by notes in plain language so you can understand why each step is needed.
