@@ -1,5 +1,5 @@
 # 10x Visium HD Spatial Transcriptomics Analysis Tutorial
-
+![](figure.png)
 ## Introduction
 
 This tutorial walks through a complete analysis of **10x Visium HD spatial transcriptomics data**. Think of spatial transcriptomics as creating a molecular map of tissues - it's like having a GPS that shows not just where cells are located, but what genes they're actively using at each spot. This is incredibly powerful for understanding how different parts of organs work together and how diseases affect specific tissue regions.
